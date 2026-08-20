@@ -21,6 +21,7 @@ def sum(a, b):
     z = 0  # This will refer to global z and not create a local variable
     return c
 
+
 z = 3
 print(sum(3, 12))
 print(z)
@@ -31,5 +32,6 @@ def sum(a, b):
     """This will sum two numbers"""
     c = a + b
     return c
+
 
 print(sum.__doc__)
