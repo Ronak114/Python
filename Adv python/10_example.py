@@ -1,5 +1,6 @@
 # Write a decorator logger that prints "Function is being called" before the function runs. Use it to decorate a function "Hello!" .
 
+
 def logger(func):
     def wrapper():
         print("Function is being called")
@@ -7,9 +8,11 @@ def logger(func):
 
     return wrapper
 
+
 @logger
 def say_hello():
     print("Hello!")
+
 
 say_hello()
 
@@ -17,6 +20,7 @@ say_hello()
 # 2. Write a decorator timer that calculates how long a function takes to execute.Test it with a function that sums numbers from 1 to 1,000,000.
 
 from time import time
+
 
 def timer(func):
     def wrapper():
@@ -28,6 +32,7 @@ def timer(func):
 
     return wrapper
 
+
 @timer
 def sum():
     total = 0
@@ -35,10 +40,12 @@ def sum():
         total += i
     return total
 
+
 sum()
 
 
 # 3.Create a class Employee with a private attribute _salary. Use @property to define a getter for salary. Use @salary.setter to prevent setting negative values (print a warning instead). Create an object and test by setting positive and negative salaries.
+
 
 class Employee:
     def __init__(self, salary):
@@ -55,6 +62,7 @@ class Employee:
         else:
             self.s = val
 
+
 e = Employee(3500000)
 print(e.get_salary)
 e.set_salary = -4000000
@@ -66,6 +74,7 @@ print(e.get_salary)
     1.@staticmethod called add(a, b) that returns a + b.
     2.@classmethod called description(cls) that prints "This is a utility class for math operations."
 4.1. Call both methods without creating an object."""
+
 
 class MathUtlis:
 
@@ -79,6 +88,7 @@ class MathUtlis:
     @classmethod
     def description(cls):
         print("This is a utility class for math operations.")
+
 
 a = MathUtlis()
 print(a.add(4, 6))
@@ -94,6 +104,7 @@ Implement __str__() so that printing the object displays "Title by Author" .
 Implement __len__() so that len(book) returns the length of the title.
 5.2. Create two Book objects and test these methods."""
 
+
 class Book:
     def __init__(self, title, author):
         self.title = title
@@ -105,6 +116,7 @@ class Book:
     def __len__(self):
         return len(self.title)
 
+
 b1 = Book("It Ends with Us", "Coollen hoover")
 b2 = Book("Verity", "Coollen hoover")
 
@@ -112,31 +124,63 @@ print(b1.__str__())
 print(b2.__len__())
 
 
-'''Exception Handling and Custom Errors
+"""Exception Handling and Custom Errors
 6.Write a program that asks the user to enter a number and handles:
     1. ValueError if the input is not a number
     2. ZeroDivisionError if you try to divide by zero
-6.2. Create a custom exception NegativeNumberError and raise it when the user enters a negative number.'''
+6.2. Create a custom exception NegativeNumberError and raise it when the user enters a negative number."""
 
-class NegativeNoError(Exception):
-    pass 
+# class NegativeNoError(Exception):
+#     pass
 
-while True:
-    try:
-        a=int(input("Enter no 1: "))
-        b=int(input("Enter no 2: "))
+# while True:
+#     try:
+#         a=int(input("Enter no 1: "))
+#         b=int(input("Enter no 2: "))
 
-        if a<0 or b<0:
-            raise NegativeNoError("No should be positive")
-        
-        print(a/b)
+#         if a<0 or b<0:
+#             raise NegativeNoError("No should be positive")
 
-    except ValueError:
-        print("Plz enter no")
+#         print(a/b)
 
-    except ZeroDivisionError:
-        print("2nd no should not be 0")
+#     except ValueError:
+#         print("Plz enter no")
 
-    except NegativeNoError:
-        print("Dont enter negative no")
+#     except ZeroDivisionError:
+#         print("2nd no should not be 0")
 
+#     except NegativeNoError:
+#         print("Dont enter negative no")
+
+# 7. map() to convert into their cubes
+# 7.1. filter() to get only even numbers from [10, 11, 12, 13, 14] .
+# 7.2. reduce() from functools to find the product of all elements in [1,2,3, 4]
+
+a = [1, 2, 3, 4, 5]
+
+b = list(map(lambda x: x * x * x, a))
+print(b)
+
+c = list(filter(lambda x: x % 2 == 0, [10, 11, 12, 13, 14]))
+print(c)
+
+from functools import reduce
+
+p = lambda a, b: a * b
+d = reduce(p, a)
+print(d)
+
+
+# 8. Use the walrus operator to read input until the user enters "quit" . Print each input as it is entered.
+
+while (text := input("Enter:")) != "quit":
+    print(f"You enter {text}")
+
+
+# 8.2 Use the walrus operator in a list comprehension to store lengths of words from ["python", "rocks", "ai"] in a list while filtering out words shorter than 4 characters.
+
+words = ["python", "rocks", "ai"]
+
+l = [n for w in words if (n := len(w)) > 4]
+
+print(l)
